@@ -8,7 +8,7 @@ charset-normalizer==3.2.0
 click==8.1.7
 colorama==0.4.6
 cryptography==41.0.4
-dnspython==2.4.2
+dnspython
 filelock==3.12.4
 firebase-admin==6.2.0
 Flask==2.3.3
