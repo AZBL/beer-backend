@@ -7,6 +7,7 @@ from flask_migrate import Migrate
 from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials
+import json
 
 
 def create_app():
@@ -22,7 +23,8 @@ def create_app():
     app.register_blueprint(authentication_blueprint)
     app.register_blueprint(api_blueprint)
 
-    cred = credentials.Certificate(Config.FIREBASE_SERVICE_ACCOUNT_PATH)
+    cred_data = json.loads(Config.FIREBASE_SERVICE_ACCOUNT_JSON)
+    cred = credentials.Certificate(cred_data)
     firebase_admin.initialize_app(cred)
 
     db.init_app(app)

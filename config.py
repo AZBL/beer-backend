@@ -10,7 +10,7 @@ class Config:
     FLASK_APP = os.getenv('FLASK_APP')
     FLASK_ENV = os.getenv('FLASK_ENV')
 
-    FIREBASE_SERVICE_ACCOUNT_PATH = os.getenv('FIREBASE_SERVICE_ACCOUNT_PATH')
+    FIREBASE_SERVICE_ACCOUNT_JSON= os.getenv('FIREBASE_SERVICE_ACCOUNT_JSON')
 
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URI') or 'sqlite:///' + os.path.join(basedir, 'app.db')
