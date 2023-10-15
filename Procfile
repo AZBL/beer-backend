@@ -1,1 +1,1 @@
-web: flask run --host=0.0.0.0 --port=10000
+web: gunicorn app:create_app() --bind 0.0.0.0:10000
