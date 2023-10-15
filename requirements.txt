@@ -11,7 +11,7 @@ cryptography==41.0.4
 dnspython
 filelock
 firebase-admin==6.2.0
-Flask==2.3.3
+Flask
 Flask-Cors==4.0.0
 flask-marshmallow==0.15.0
 Flask-Migrate==4.0.5
