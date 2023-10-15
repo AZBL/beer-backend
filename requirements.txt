@@ -17,7 +17,7 @@ flask-marshmallow==0.15.0
 Flask-Migrate==4.0.5
 Flask-SQLAlchemy
 future==0.18.3
-gevent==23.9.1
+gevent
 google-api-core==2.12.0
 google-api-python-client==2.101.0
 google-auth==2.23.0
