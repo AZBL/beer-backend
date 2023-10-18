@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from .authentication import authentication as authentication_blueprint
 from .api import api as api_blueprint
 from config import Config
@@ -28,16 +28,20 @@ def create_app():
     def index():
         return "Flask API is running!"
 
-    @app.route('/test_db')
-    def test_db():
-        try:
-            num_users = User.query.count()
-            app.logger.info(
-                f"Successfully queried DB: {num_users} users found.")
-            return f"There are {num_users} users.", 200
-        except Exception as e:
-            app.logger.error(f"Error querying DB: {e}")
-            return str(e), 500
+    @app.route('/health', methods=['GET'])
+    def health_check():
+        return jsonify(status="OK"), 200
+
+    # @app.route('/test_db')
+    # def test_db():
+    #     try:
+    #         num_users = User.query.count()
+    #         app.logger.info(
+    #             f"Successfully queried DB: {num_users} users found.")
+    #         return f"There are {num_users} users.", 200
+    #     except Exception as e:
+    #         app.logger.error(f"Error querying DB: {e}")
+    #         return str(e), 500
 
     app.register_blueprint(authentication_blueprint)
     app.register_blueprint(api_blueprint)
