@@ -8,6 +8,7 @@ from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials
 import json
+from models import User
 
 
 def create_app():
@@ -23,6 +24,15 @@ def create_app():
     @app.route('/')
     def index():
         return "Flask API is running!"
+
+    @app.route('/test_db')
+    def test_db():
+        try:
+            num_users = User.query.count()
+            return f"There are {num_users} users.", 200
+        except Exception as e:
+            return str(e), 500
+
     app.register_blueprint(authentication_blueprint)
     app.register_blueprint(api_blueprint)
 
