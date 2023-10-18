@@ -8,11 +8,14 @@ from flask_cors import CORS
 import firebase_admin
 from firebase_admin import credentials
 import json
-from models import User
+import logging
 
 
 def create_app():
     app = Flask(__name__)
+
+    # Set up enhanced logging
+    logging.basicConfig(level=logging.DEBUG)
 
     CORS(app, origins=[
         "http://localhost:5173",
@@ -29,8 +32,11 @@ def create_app():
     def test_db():
         try:
             num_users = User.query.count()
+            app.logger.info(
+                f"Successfully queried DB: {num_users} users found.")
             return f"There are {num_users} users.", 200
         except Exception as e:
+            app.logger.error(f"Error querying DB: {e}")
             return str(e), 500
 
     app.register_blueprint(authentication_blueprint)
