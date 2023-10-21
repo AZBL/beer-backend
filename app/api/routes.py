@@ -37,7 +37,7 @@ def add_beer(user_id):
 def get_all_beers(user_id):
     beers = Beer.query.filter_by(user_id=user_id).all()
     if not beers:
-        return jsonify({'message': 'No beer found for this user'}), 404
+        return jsonify([]), 200
     response = beers_schema.dump(beers)
     return jsonify(response)
 
