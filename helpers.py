@@ -11,6 +11,7 @@ def verify_firebase_token(token):
     except Exception as e:
         return None
 
+
 def token_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
@@ -23,11 +24,10 @@ def token_required(f):
         if firebase_uid is None:
             return jsonify({'message': 'Invalid token.'}), 403
 
-        # Here's the change: get the user by firebase_uid and pass the numeric id
         user = User.query.filter_by(firebase_uid=firebase_uid).first()
         if not user:
             return jsonify({'message': 'User not found.'}), 403
 
-        return f(user.id, *args, **kwargs)  # pass the numeric id
+        return f(user.id, *args, **kwargs)
 
     return decorated

@@ -36,7 +36,6 @@ class Beer(db.Model):
     name = db.Column(db.String(100), nullable=False)
     abv = db.Column(db.Float)
     style = db.Column(db.String(75))
-    description = db.Column(db.String(500))
     comments = db.Column(db.String(500))
     rating = db.Column(db.Float)
     user_id = db.Column(db.Integer, ForeignKey('users.id'))
@@ -47,7 +46,7 @@ class Beer(db.Model):
 class BeerSchema(ma.Schema):
     class Meta:
         fields = ['id', 'brewery', 'name', 'abv',
-                  'style', 'description', 'comments', 'rating']
+                  'style', 'comments', 'rating']
 
 
 beer_schema = BeerSchema()

@@ -32,17 +32,6 @@ def create_app():
     def health_check():
         return jsonify(status="OK"), 200
 
-    # @app.route('/test_db')
-    # def test_db():
-    #     try:
-    #         num_users = User.query.count()
-    #         app.logger.info(
-    #             f"Successfully queried DB: {num_users} users found.")
-    #         return f"There are {num_users} users.", 200
-    #     except Exception as e:
-    #         app.logger.error(f"Error querying DB: {e}")
-    #         return str(e), 500
-
     app.register_blueprint(authentication_blueprint)
     app.register_blueprint(api_blueprint)
 

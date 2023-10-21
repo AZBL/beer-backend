@@ -1,4 +1,4 @@
-from models import User  # Ensure you have imported User
+from models import User
 from flask import request, jsonify, Blueprint
 from helpers import token_required
 from models import db, Beer, beer_schema, beers_schema
@@ -19,12 +19,11 @@ def add_beer(user_id):
     name = data.get('name', None)
     abv = data.get('abv', None)
     style = data.get('style', None)
-    description = data.get('description', None)
     comments = data.get('comments', None)
     rating = data.get('rating', None)
 
     new_beer = Beer(brewery=brewery, name=name, abv=abv,
-                    style=style, description=description, comments=comments, rating=rating, user_id=user_id)
+                    style=style, comments=comments, rating=rating, user_id=user_id)
     db.session.add(new_beer)
     db.session.commit()
 
@@ -77,8 +76,6 @@ def update_beer(user_id, id):
         beer.abv = data['abv']
     if 'style' in data:
         beer.style = data['style']
-    if 'description' in data:
-        beer.description = data['description']
     if 'comments' in data:
         beer.comments = data['comments']
     if 'rating' in data:
