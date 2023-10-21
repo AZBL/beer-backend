@@ -14,9 +14,6 @@ import logging
 def create_app():
     app = Flask(__name__)
 
-    # Set up enhanced logging
-    logging.basicConfig(level=logging.DEBUG)
-
     CORS(app, origins=[
         "http://localhost:5173",
         "https://beer-fridge.onrender.com"
